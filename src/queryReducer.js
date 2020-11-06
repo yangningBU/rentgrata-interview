@@ -1,4 +1,4 @@
-import {UPDATE_QUERY} from './actions'
+import {UPDATE_QUERY, SEARCH_STARTED, SEARCH_FAILED, SEARCH_RETURNED} from './actions'
 
 const initialState = null
 

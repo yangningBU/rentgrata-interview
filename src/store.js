@@ -3,7 +3,7 @@ import thunkMiddleware from 'redux-thunk'
 import { combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
-import queryReducer from './queryReducer.js'
+import queryReducer from './queryReducer'
 import resultsReducer from './resultsReducer'
 
 const rootReducer = combineReducers({

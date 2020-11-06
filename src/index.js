@@ -9,12 +9,6 @@ import reportWebVitals from './reportWebVitals';
 
 import store from './store.js'
 
-import {fetchMovieResults} from './api.js'
-
-console.log("dispatching fetch")
-store.dispatch(fetchMovieResults)
-console.log(store.getState())
-
 ReactDOM.render(
   <React.StrictMode>
   	<Provider store={store}>
