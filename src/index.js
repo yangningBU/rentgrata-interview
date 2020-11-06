@@ -1,16 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import queryReducer from './queryReducer.js'
+import store from './store.js'
 
-const store = createStore(queryReducer)
+import {fetchMovieResults} from './api.js'
+
+console.log("dispatching fetch")
+store.dispatch(fetchMovieResults)
+console.log(store.getState())
 
 ReactDOM.render(
   <React.StrictMode>
