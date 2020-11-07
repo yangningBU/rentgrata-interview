@@ -19,6 +19,7 @@
   align-items: center;
   flex-direction: column;
   height: 100vh;
+  width: 50%;
 }
 .results {
   padding: 10px;
