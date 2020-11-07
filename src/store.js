@@ -10,7 +10,6 @@ const rootReducer = combineReducers({
     query: queryReducer,
     results: resultsReducer
 })
-console.log(rootReducer)
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))
 // The store now has the ability to accept thunk functions in `dispatch`

@@ -5,10 +5,11 @@ const initialState = {}
 const resultsReducer = (state = initialState, action) => {
     switch(action.type) {
         case SEARCH_RETURNED:
-            return {
-                ...state.results,
+            const newResults = {
+                ...state,
                 [action.query]: action.payload
             }
+            return newResults
         default:
             return state
     }
