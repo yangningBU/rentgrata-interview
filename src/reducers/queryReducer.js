@@ -1,4 +1,4 @@
-import {UPDATE_QUERY, SEARCH_FAILED} from './actions'
+import {UPDATE_QUERY, SEARCH_FAILED, NO_SELECTION} from '../constants'
 
 const initialState = ""
 
@@ -7,7 +7,7 @@ const queryReducer = (state = initialState, action) => {
 		case UPDATE_QUERY:
 			return action.query.toLowerCase().trim()
 		case SEARCH_FAILED:
-			return 'NO_SELECTION'
+			return NO_SELECTION
 		default:
 			return state
 	}

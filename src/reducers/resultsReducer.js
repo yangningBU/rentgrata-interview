@@ -1,4 +1,4 @@
-import {SEARCH_RETURNED} from './actions'
+import {SEARCH_RETURNED} from '../constants'
 
 const initialState = {}
 

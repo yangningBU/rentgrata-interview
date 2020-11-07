@@ -1,4 +1,4 @@
-import {SEARCH_RETURNED, SEARCH_STARTED, SEARCH_FAILED, UPDATE_QUERY} from './actions'
+import {SEARCH_RETURNED, SEARCH_STARTED, SEARCH_FAILED, UPDATE_QUERY, NO_SELECTION} from './constants'
 
 const API_ENDPOINT = "https://www.omdbapi.com/?apikey=d0bc3438"
 
@@ -14,7 +14,6 @@ export function searchMovieBy(query) {
                     if (data && data.Search) {
                         dispatch({type: SEARCH_RETURNED, payload: data.Search, query: query})
                     } else {
-                        console.log("No search results: ", data)
                         dispatch({type: SEARCH_FAILED})
                     }
                 })
@@ -23,7 +22,7 @@ export function searchMovieBy(query) {
                     dispatch({type: SEARCH_FAILED})
                 })
         } else {
-            dispatch({type: UPDATE_QUERY, query: "NO_SELECTION"})
+            dispatch({type: UPDATE_QUERY, query: NO_SELECTION})
         }
     }
 }
