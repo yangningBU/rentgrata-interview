@@ -1,6 +1,6 @@
 import {UPDATE_QUERY, SEARCH_STARTED, SEARCH_FAILED, SEARCH_RETURNED} from './actions'
 
-const initialState = null
+const initialState = ""
 
 const queryReducer = (state = initialState, action) => {
 	switch(action.type) {

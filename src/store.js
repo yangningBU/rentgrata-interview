@@ -4,11 +4,13 @@ import { combineReducers } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 
 import queryReducer from './queryReducer'
+import selectionReducer from './selectionReducer'
 import resultsReducer from './resultsReducer'
 
 const rootReducer = combineReducers({
     query: queryReducer,
-    results: resultsReducer
+    results: resultsReducer,
+    selection: selectionReducer
 })
 
 const composedEnhancer = composeWithDevTools(applyMiddleware(thunkMiddleware))

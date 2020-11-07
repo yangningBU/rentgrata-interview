@@ -3,18 +3,24 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import './App.css';
 
-import {UPDATE_QUERY} from './actions'
+import {UPDATE_QUERY, UPDATE_SELECTION} from './actions'
 import {searchMovieBy} from './api'
 
 
 const SelectPreviousResults = () => {
-  const selectedQuery = useSelector(state => state.query)
+  const selectedQuery = useSelector(state => state.selection)
   const previousResults = useSelector(state => state.results)
   const dispatch = useDispatch()
   const onSelect = () => dispatch({
-    type: UPDATE_QUERY,
-    query: selectedQuery
+    type: UPDATE_SELECTION,
+    selection: selectedQuery
   })
+  const selectPrevious = (e) => {
+    dispatch({
+      type: UPDATE_QUERY,
+      query: e.target.value
+    })
+  }
   
   if (!selectedQuery) {
     return null
@@ -22,9 +28,9 @@ const SelectPreviousResults = () => {
 
   return (
     <form>
-     <select name="previousResults">
+     <select name="previousResults" onChange={(e) => selectPrevious(e)}>
       {Object.keys(previousResults).map(key => {
-        return <option value={key} defaultValue={selectedQuery === key || null} onSelect={onSelect}>{key}</option>
+        return <option value={key} selected={selectedQuery === key || null} onSelect={onSelect}>{key}</option>
       })}
      </select>
     </form>
