@@ -30,7 +30,7 @@ const SelectPreviousResults = () => {
      <select name="previousResults" onChange={(e) => selectPrevious(e)}>
       <option value="NO_SELECTION" selected={selectedQuery === "" || null}>--</option>
       {Object.keys(previousResults).map(key => {
-        return <option value={key} selected={selectedQuery === key || null}>{key}</option>
+        return <option value={key} key={key} selected={selectedQuery === key || null}>{key}</option>
       })}
      </select>
     </form>
@@ -62,7 +62,7 @@ const SearchBar = () => {
     e.preventDefault()
     dispatch({
       type: UPDATE_QUERY,
-      query: query || 'NO_SELECTION'
+      query: query.toLowerCase().trim() || 'NO_SELECTION'
     })
     dispatch(searchMovieBy(query))
   }
@@ -75,15 +75,15 @@ const SearchBar = () => {
   )
 }
 
-const Results = ({results, query}) => {
+const Results = ({results}) => {
   if (!results || results.length === 0) {
-    return <h4>No Results for "{query}"</h4>
+    return <div className="container results center"><h4>No Results</h4></div>
   }
 
   return (
-    <>
+    <div className="container results">
       {results.map(result => <MovieResult result={result} key={result.imdbID}/>)}
-    </>
+    </div>
   )
 }
 
@@ -95,14 +95,12 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <h2>Search for movie info from OMDB:</h2>
+        <h2>Search for movie from OMDB:</h2>
         <SearchBar />
         <br/>
         <SelectPreviousResults />
       </div>
-      <div className="container results">
-        <Results results={relatedResults} query={lastQuery}/>
-      </div>
+      <Results results={relatedResults}/>
     </div>
   );
 }

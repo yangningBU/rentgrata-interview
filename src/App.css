@@ -1,10 +1,3 @@
-body {
-  scrollbar-color: #282c34;
-}
-body::-webkit-scrollbar-track {
-  background: #282c34;        /* color of the tracking area */
-}
-
 .App {
   text-align: center;
   background-color: #282c34;
@@ -28,6 +21,11 @@ body::-webkit-scrollbar-track {
   height: 100vh;
 }
 .results {
- overflow-y: scroll;
- min-width: 300px;
+  padding: 10px;
+  justify-content: flex-start;
+  overflow-y: scroll;
+  min-width: 300px;
+}
+.results.center {
+  justify-content: center;
 }

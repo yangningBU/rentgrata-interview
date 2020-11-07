@@ -3,6 +3,7 @@ import {SEARCH_RETURNED, SEARCH_STARTED, SEARCH_FAILED, UPDATE_QUERY} from './ac
 const API_ENDPOINT = "https://www.omdbapi.com/?apikey=d0bc3438"
 
 export function searchMovieBy(query) {
+    query = query.toLowerCase().trim()
     return async function fetchMovieResults(dispatch, getState) {
         if (query) {
             const sourceURL = API_ENDPOINT + "&s=" + encodeURI(query)

@@ -7,7 +7,7 @@ const resultsReducer = (state = initialState, action) => {
         case SEARCH_RETURNED:
             const newResults = {
                 ...state,
-                [action.query]: action.payload
+                [action.query.toLowerCase().trim()]: action.payload
             }
             return newResults
         default:
