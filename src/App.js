@@ -8,18 +8,17 @@ import {searchMovieBy} from './api'
 
 
 const SelectPreviousResults = () => {
-  const selectedQuery = useSelector(state => state.selection)
+  const selectedQuery = useSelector(state => state.query)
   const previousResults = useSelector(state => state.results)
   const dispatch = useDispatch()
-  const onSelect = () => dispatch({
-    type: UPDATE_SELECTION,
-    selection: selectedQuery
-  })
   const selectPrevious = (e) => {
-    dispatch({
-      type: UPDATE_QUERY,
-      query: e.target.value
-    })
+    const value = e.target.value
+    if (value) {
+      dispatch({
+        type: UPDATE_QUERY,
+        query: value
+      })
+    }
   }
   
   if (!selectedQuery) {
@@ -29,8 +28,8 @@ const SelectPreviousResults = () => {
   return (
     <form>
      <select name="previousResults" onChange={(e) => selectPrevious(e)}>
-      {Object.keys(previousResults).map(key => {
-        return <option value={key} selected={selectedQuery === key || null} onSelect={onSelect}>{key}</option>
+      {["", ...Object.keys(previousResults)].map(key => {
+        return <option value={key} selected={selectedQuery === key || null}>{key}</option>
       })}
      </select>
     </form>
@@ -75,27 +74,34 @@ const SearchBar = () => {
   )
 }
 
-const Results = ({results}) => {
+const Results = ({results, query}) => {
+  if (!results || results.length === 0) {
+    return <h4>No Results for "{query}"</h4>
+  }
+
   return (
-    <div className="container">
+    <>
       {results.map(result => <MovieResult result={result} key={result.imdbID}/>)}
-    </div>
+    </>
   )
 }
 
 function App() {
   const lastQuery = useSelector(state => state.query)
-  //const dropdownSelection = useSelector(state => state.dropdown)
   const results = useSelector(state => state.results)
-  //const index = dropdownSelection || lastQuery
   const relatedResults = results[lastQuery] || []
 
   return (
     <div className="App">
-      <h2>Search for movie info from OMDB:</h2>
-      <SelectPreviousResults />
-      <SearchBar />
-      <Results results={relatedResults}/>
+      <div className="container">
+        <h2>Search for movie info from OMDB:</h2>
+        <SearchBar />
+        <br/>
+        <SelectPreviousResults />
+      </div>
+      <div className="container results">
+        <Results results={relatedResults} query={lastQuery}/>
+      </div>
     </div>
   );
 }

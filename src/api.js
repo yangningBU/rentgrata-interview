@@ -7,19 +7,19 @@ export function searchMovieBy(query) {
         if (query) {
             const sourceURL = API_ENDPOINT + "&s=" + encodeURI(query)
             dispatch({type: SEARCH_STARTED})
-            const response = await fetch(sourceURL)
+            await fetch(sourceURL)
                 .then(response => response.json())
                 .then(data => {
                     if (data && data.Search) {
                         dispatch({type: SEARCH_RETURNED, payload: data.Search, query: query})
                     } else {
                         console.log("No search results: ", data)
-                        dispatch({type: SEARCH_FAILED})
+                        dispatch({type: SEARCH_FAILED, query: ""})
                     }
                 })
                 .catch((error) => {
                     console.error('Error:', error)
-                    dispatch({type: SEARCH_FAILED})
+                    dispatch({type: SEARCH_FAILED, query: ""})
                 })
         }
     }

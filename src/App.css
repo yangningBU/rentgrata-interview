@@ -3,12 +3,24 @@
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+.results {
+ overflow-y: scroll;
+ min-width: 300px;
 }
