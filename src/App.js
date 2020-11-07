@@ -47,7 +47,7 @@ const MovieResult = ({result}) => {
   const year = result.Year
   return (
     <div>
-      <img src={poster} width="100px"/>
+      <img src={poster} width="100px" alt={title}/>
       <p>{title} ({year})</p>
     </div>
   )
