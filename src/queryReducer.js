@@ -6,6 +6,8 @@ const queryReducer = (state = initialState, action) => {
 	switch(action.type) {
 		case UPDATE_QUERY:
 			return action.query
+		case SEARCH_FAILED:
+			return 'NO_SELECTION'
 		default:
 			return state
 	}

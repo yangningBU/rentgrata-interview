@@ -3,7 +3,7 @@ import {useSelector, useDispatch} from 'react-redux'
 
 import './App.css';
 
-import {UPDATE_QUERY, UPDATE_SELECTION} from './actions'
+import {UPDATE_QUERY} from './actions'
 import {searchMovieBy} from './api'
 
 
@@ -28,7 +28,8 @@ const SelectPreviousResults = () => {
   return (
     <form>
      <select name="previousResults" onChange={(e) => selectPrevious(e)}>
-      {["", ...Object.keys(previousResults)].map(key => {
+      <option value="NO_SELECTION" selected={selectedQuery === "" || null}>--</option>
+      {Object.keys(previousResults).map(key => {
         return <option value={key} selected={selectedQuery === key || null}>{key}</option>
       })}
      </select>
@@ -61,7 +62,7 @@ const SearchBar = () => {
     e.preventDefault()
     dispatch({
       type: UPDATE_QUERY,
-      query
+      query: query || 'NO_SELECTION'
     })
     dispatch(searchMovieBy(query))
   }

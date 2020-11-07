@@ -1,3 +1,10 @@
+body {
+  scrollbar-color: #282c34;
+}
+body::-webkit-scrollbar-track {
+  background: #282c34;        /* color of the tracking area */
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
